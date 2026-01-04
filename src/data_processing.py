@@ -55,7 +55,14 @@ def calculate_metrics(actual: np.ndarray, predicted: np.ndarray) -> dict:
     """
     mae = np.mean(np.abs(actual - predicted))
     rmse = np.sqrt(np.mean((actual - predicted) ** 2))
-    mape = np.mean(np.abs((actual - predicted) / actual)) * 100
+    
+    # Calculate MAPE safely, handling zero values
+    # Use mask to avoid division by zero
+    mask = actual != 0
+    if mask.sum() > 0:
+        mape = np.mean(np.abs((actual[mask] - predicted[mask]) / actual[mask])) * 100
+    else:
+        mape = np.nan  # Return NaN if all actual values are zero
     
     return {
         'MAE': mae,

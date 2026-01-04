@@ -13,7 +13,6 @@ setup(
     name="sales-forecasting",
     version="1.0.0",
     author="Neil Schroeder",
-    author_email="",
     description="A comprehensive sales forecasting portfolio project",
     long_description=long_description,
     long_description_content_type="text/markdown",
